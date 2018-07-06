@@ -5,13 +5,18 @@ class FavoriteComponent extends Component {
         super()
         this.state = {
             input: '',
-            isToggled : false
+            isToggled : false,
+            editInputDefault: ''
         }
     }
-
+    componentDidMount(){
+        this.setState({
+            editInputDefault : this.props.location
+        })
+    }
     handleChange(input){
         this.setState({
-            input: input
+            editInputDefault: input
         })
     }
     toggleEdit(){
@@ -19,6 +24,7 @@ class FavoriteComponent extends Component {
             isToggled : true
         })
     }
+
 
     render(props){
         const amIToggled=this.state.isToggled
@@ -32,8 +38,13 @@ class FavoriteComponent extends Component {
         )}else{
             return(
                 <div>
-                    <input onChange={(event)=>this.handleChange(event.target.value)}value={this.state.input}/>
-                    <button>Confirm</button>
+                    <input onChange={(event)=>this.handleChange(event.target.value)}value={this.state.editInputDefault}/>
+                    <button onClick={()=>
+                        {this.props.editFavorite(this.props.id,this.state.editInputDefault)
+                            this.setState({
+                                isToggled: false
+                            })
+                        }}>Confirm</button>
                 </div>
             )
         }

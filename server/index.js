@@ -8,7 +8,7 @@ const app = express()
 app.use( bodyParser.json())
 app.listen(process.env.SERVER_PORT, ()=>{console.log(`Server listening on port ${process.env.SERVER_PORT}`)})
 
-const favorites = []
+const favorites = [{location:'Provo, UT',id:100},{location:"Bellingham, WA",id:101}]
 var id=0
 
 
@@ -36,7 +36,7 @@ app.post('/api/favorites',(req,res)=>{
 })
 
 app.get('/api/favorites',(req,res) =>{
-    res.status(200).send(JSON.stringify(favorites))
+    res.status(200).send(favorites)
 })
 
 app.delete('/api/favorites/:key',(req,res)=>{

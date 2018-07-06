@@ -1,26 +1,40 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import AddFavorites from './AddFavorites'
+import FavoritesHeadline from './FavoritesHeadline'
 import FavoriteComponent from './FavoriteComponent'
+import WeatherDetails from './WeatherDetails'
 
 class Main extends Component {
     constructor(){
         super()
         this.state = {
-            weatherResponse: '',
+            weatherConditionResponse: '',
+            weatherTempResponse: 0,
+            iconResponse: '',
             input: '',
             favorites: []
         }
     this.deleteFavorite = this.deleteFavorite.bind(this)
+    this.editFavorite = this.editFavorite.bind(this)
+    }
+    componentDidMount(){
+        axios.get('/api/favorites')
+        .then(response=>{
+            this.setState({
+                favorites: response.data
+            })
+        })
     }
 
     requestWeather(){
         axios.get(`/api/coordinates/${this.state.input}`)
         .then(response=>{
           this.setState({
-            weatherResponse: response.data.currently.summary
+            weatherConditionResponse: response.data.currently.summary,
+            weatherTempResponse: response.data.currently.temperature,
+            iconResponse: response.data.currently.icon
           })
-          console.log(this.state.weatherResponse)
+          console.log(response.data.currently)
         })
       }
       handleChange(input){
@@ -46,8 +60,13 @@ class Main extends Component {
               })
           })
       }
-      editFavorite(id,location){
-          axios.put(`/api/favorites/${id}`, location)
+      editFavorite(id,input){
+          axios.put(`/api/favorites/${id}`, {location:input})
+          .then(response=>{
+              this.setState({
+                  favorites: response.data
+              })
+          })
       }
 
     render(){
@@ -57,11 +76,14 @@ class Main extends Component {
                 <input onChange={(event)=>this.handleChange(event.target.value)} />
                 <button onClick={()=>this.requestWeather()}>Find Weather</button>
                 <button onClick={()=>this.addFavorite()}>Add to Favorites</button>
-                <div>{this.state.weatherResponse}</div>
-                <AddFavorites favorites = {this.state.favorites}/>
+                <p></p>
+                <div>
+                    <WeatherDetails temp={this.state.weatherTempResponse} condition={this.state.weatherConditionResponse}/>
+                </div>
+                <FavoritesHeadline />
                 <div>{this.state.favorites.map((element, i)=>{
                     return(
-                        <FavoriteComponent key={i} deleteFavorite={this.deleteFavorite} location={element.location} id={element.id}/>
+                        <FavoriteComponent key={i} editFavorite={this.editFavorite} deleteFavorite={this.deleteFavorite} location={element.location} id={element.id}/>
                     )
                 })}</div>
             </div>
