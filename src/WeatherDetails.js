@@ -8,7 +8,7 @@ export default function weatherDetails(props){
     )}else{
         return (
             <div>
-                {props.condition} with a temperature of {props.temp} degrees
+                <p>{props.condition} with a temperature of {props.temp} degrees</p>
             </div>
         )
     }

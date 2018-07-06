@@ -1,4 +1,6 @@
 import React, { Component} from 'react'
+import axios from 'axios'
+import './faveComponent.css';
 
 class FavoriteComponent extends Component {
     constructor(){
@@ -6,14 +8,26 @@ class FavoriteComponent extends Component {
         this.state = {
             input: '',
             isToggled : false,
-            editInputDefault: ''
+            editInputDefault: '',
+            childWeatherConditionResponse: '',
+            childWeatherTempResponse: 0,
+            childIconResponse: ''
         }
     }
     componentDidMount(){
         this.setState({
             editInputDefault : this.props.location
         })
-    }
+        //////////DISABLED TO AVOID EXCESSIVE API CALLS//////////
+    //     axios.get(`/api/coordinates/${this.props.location}`)
+    //     .then(response=>{
+    //       this.setState({
+    //         childWeatherConditionResponse: response.data.currently.summary,
+    //         childWeatherTempResponse: response.data.currently.temperature,
+    //         childIconResponse: response.data.currently.icon
+    //       })
+    //     })
+        }
     handleChange(input){
         this.setState({
             editInputDefault: input
@@ -30,8 +44,10 @@ class FavoriteComponent extends Component {
         const amIToggled=this.state.isToggled
         if(amIToggled===false){
         return(
-            <div>
+            <div className="hello">
             <p>{this.props.location}</p>
+            <p>{this.state.childWeatherConditionResponse}</p>
+            {/* <p>{this.state.childWeatherTempResponse}</p> */}
             <button onClick={()=>this.props.deleteFavorite(this.props.id)}>Remove from Favorites</button>
             <button onClick={()=>this.toggleEdit()}>Edit</button>
         </div>

@@ -1,3 +1,9 @@
+body {
+  background-image: url('https://www.hdwallpapers.in/download/cloudy_sky-wide.jpg');
+  background-position: center;
+  height: 110vh;
+  width: 100%;
+}
 .App {
   text-align: center;
 }
@@ -21,7 +27,39 @@
 .App-intro {
   font-size: large;
 }
-
+img {
+  width: 100px;
+  height: auto
+}
+button {
+  background-color: #bbbbbb;
+  border: none;
+  margin-left: 15px;
+  padding: 10px 15px;
+  font-size: 20px;
+  color: black;
+  border-radius: 10px;
+  opacity: .6;
+  outline: none;
+}
+h1 {
+  font-size: 50px;
+  font-family: sans-serif;
+  color: white;
+}
+input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: none;
+  width: 200px;
+  height: 45px;
+  font-size: 30px;
+  outline: none;
+}
+p {
+  font-size: 25px;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

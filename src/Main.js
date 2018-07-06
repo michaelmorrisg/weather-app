@@ -3,6 +3,8 @@ import axios from 'axios'
 import FavoritesHeadline from './FavoritesHeadline'
 import FavoriteComponent from './FavoriteComponent'
 import WeatherDetails from './WeatherDetails'
+import WeatherImage from './WeatherImage'
+
 
 class Main extends Component {
     constructor(){
@@ -12,7 +14,17 @@ class Main extends Component {
             weatherTempResponse: 0,
             iconResponse: '',
             input: '',
-            favorites: []
+            favorites: [],
+            weatherIcons: [{status:"clear-day", image:"https://cdn4.iconfinder.com/data/icons/daytime-weather/100/day-sunny-512.png"},
+        {status: "clear-night", image:"http://icon-park.com/imagefiles/simple_weather_icons_night.png"}, 
+        {status:'partly-cloudy-day', image:"http://rs66.pbsrc.com/albums/h272/weathermanfan/The%20Weather%20Channel%20Icons%202013%20-%20Present/FairDay-MostlySunny_zps8a152e19.png~c200"},
+        {status:'party-cloudy-night', image:"http://icon-park.com/imagefiles/simple_weather_icons_cloudy_night.png"},
+        {status:'cloudy', image:"http://icon-park.com/imagefiles/simple_weather_icons_cloudy.png"},
+        {status:'rain', image:"http://icon-park.com/imagefiles/simple_weather_icons_mixed_rain_and_thunderstorms.png"},
+        {status:'sleet', image:"https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX20617801.jpg"},
+        {status:'snow', image:"http://icon-park.com/imagefiles/simple_weather_icons_snow.png"},
+        {status:'wind', image:"https://cdn3.iconfinder.com/data/icons/weather-321/96/weather_windHigh-512.png"},
+        {status:'fog', image:"https://cdn3.iconfinder.com/data/icons/weather-321/96/weather_fog-512.png"}]
         }
     this.deleteFavorite = this.deleteFavorite.bind(this)
     this.editFavorite = this.editFavorite.bind(this)
@@ -79,6 +91,7 @@ class Main extends Component {
                 <p></p>
                 <div>
                     <WeatherDetails temp={this.state.weatherTempResponse} condition={this.state.weatherConditionResponse}/>
+                    <WeatherImage icons={this.state.weatherIcons} iconResponse={this.state.iconResponse}/>
                 </div>
                 <FavoritesHeadline />
                 <div>{this.state.favorites.map((element, i)=>{
