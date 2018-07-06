@@ -11,6 +11,9 @@ app.listen(process.env.SERVER_PORT, ()=>{console.log(`Server listening on port $
 const favorites = []
 var id=0
 
+
+///////////////Endpoints////////////////
+
 app.get('/api/coordinates/:location',(req,res)=>{
     axios.get(`https://www.mapquestapi.com/geocoding/v1/address?key=${process.env.GEOCODE_API_KEY}Format=kvp&outFormat=json&location=${req.params.location}&thumbMaps=false`)
     .then(response=>{
@@ -40,11 +43,29 @@ app.delete('/api/favorites/:key',(req,res)=>{
     let deleteId = req.params.key
     locationIndex=favorites.findIndex(val=>val.id==deleteId)
     console.log(locationIndex)
+    if(locationIndex == -1){
+        res.status(400).send("Id not found!")
+    } else{
     favorites.splice(locationIndex,1)
+    res.status(200).send(favorites)}
+})
+
+app.put('/api/favorites/:key',(req,res)=>{
+    let editId = req.params.key
+    locationIndex=favorites.findIndex(val=>val.id==editId)
+    favorites[locationIndex]={location:req.body.location,id:editId}
     res.status(200).send(favorites)
 })
 
-// app.put()
+
+
+app.get('/api/test', (req,res)=>{
+    res.status(200).send(console.log('cat'))
+})
+
+//////////////Endpoints///////////////
+
+
 
 
 // app.get('/api/weather',(req, res)=>{
@@ -55,9 +76,6 @@ app.delete('/api/favorites/:key',(req,res)=>{
 // });
 // })
 
-app.get('/api/test', (req,res)=>{
-    res.status(200).send(console.log('cat'))
-})
 
 
 // res.status(200).send({key: 'hello'})
