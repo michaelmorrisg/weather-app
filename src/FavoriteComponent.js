@@ -19,14 +19,14 @@ class FavoriteComponent extends Component {
             editInputDefault : this.props.location
         })
         //////////DISABLED TO AVOID EXCESSIVE API CALLS//////////
-    //     axios.get(`/api/coordinates/${this.props.location}`)
-    //     .then(response=>{
-    //       this.setState({
-    //         childWeatherConditionResponse: response.data.currently.summary,
-    //         childWeatherTempResponse: response.data.currently.temperature,
-    //         childIconResponse: response.data.currently.icon
-    //       })
-    //     })
+        //  axios.get(`/api/coordinates/${this.props.location}`)
+        //  .then(response=>{
+        //    this.setState({
+        //      childWeatherConditionResponse: response.data.currently.summary,
+        //      childWeatherTempResponse: response.data.currently.temperature,
+        //      childIconResponse: response.data.currently.icon
+        //    })
+        //  })
         }
     handleChange(input){
         this.setState({
@@ -43,29 +43,42 @@ class FavoriteComponent extends Component {
     render(props){
         const amIToggled=this.state.isToggled
         if(amIToggled===false){
+            if(this.state.childWeatherConditionResponse===''){
         return(
             <div className="hello">
-            <p>{this.props.location}</p>
-            <p>{this.state.childWeatherConditionResponse}</p>
-            {/* <p>{this.state.childWeatherTempResponse}</p> */}
-            <button onClick={()=>this.props.deleteFavorite(this.props.id)}>Remove from Favorites</button>
+            <p className="title">{this.props.location}</p>
+            {/* <p>{this.state.childWeatherConditionResponse} with a temperature of {this.state.childWeatherTempResponse} degrees</p> */}
+            {/* <p>{this.state.childWeatherConditionResponse}</p>
+            <p>{this.state.childWeatherTempResponse}</p> */}
+            <button onClick={()=>this.props.deleteFavorite(this.props.id)}><img className="trashIcon"src="https://findicons.com/files/icons/1580/devine_icons_part_2/128/trash_recyclebin_empty_closed.png"/></button>
             <button onClick={()=>this.toggleEdit()}>Edit</button>
         </div>
-        )}else{
+        )}else if(this.state.childWeatherConditionResponse !=''){
             return(
-                <div>
-                    <input onChange={(event)=>this.handleChange(event.target.value)}value={this.state.editInputDefault}/>
-                    <button onClick={()=>
-                        {this.props.editFavorite(this.props.id,this.state.editInputDefault)
-                            this.setState({
-                                isToggled: false
-                            })
-                        }}>Confirm</button>
-                </div>
-            )
+                <div className="hello">
+                <p className="title">{this.props.location}</p>
+                <p>{this.state.childWeatherConditionResponse} with a temperature of {this.state.childWeatherTempResponse} degrees</p>
+                {/* <p>{this.state.childWeatherConditionResponse}</p>
+                <p>{this.state.childWeatherTempResponse}</p> */}
+                <button onClick={()=>this.props.deleteFavorite(this.props.id)}><img className="trashIcon"src="https://findicons.com/files/icons/1580/devine_icons_part_2/128/trash_recyclebin_empty_closed.png"/></button>
+                <button onClick={()=>this.toggleEdit()}>Edit</button>
+            </div>
+            )}}
+                else{
+                    return(
+                        <div>
+                        <input onChange={(event)=>this.handleChange(event.target.value)}value={this.state.editInputDefault}/>
+                        <button onClick={()=>
+                            {this.props.editFavorite(this.props.id,this.state.editInputDefault)
+                                this.setState({
+                                    isToggled: false
+                                })
+                            }}>Confirm</button>
+                    </div>
+                    )
+                }
         }
     }
-}
 
 
 export default FavoriteComponent

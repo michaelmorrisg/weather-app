@@ -55,6 +55,9 @@ class Main extends Component {
           })
       }
       addFavorite(){
+          if(this.state.input === ''){
+              alert("Please enter a location :)")
+          }else{
           axios.post('/api/favorites',{location:this.state.input})
           .then(response=> {
               this.setState({
@@ -63,7 +66,7 @@ class Main extends Component {
               console.log(this.state.input)
               console.log(this.state.favorites)
           })
-      }
+      }}
       deleteFavorite(id){
           axios.delete(`/api/favorites/${id}`)
           .then(response=>{
@@ -96,7 +99,7 @@ class Main extends Component {
                 <FavoritesHeadline />
                 <div>{this.state.favorites.map((element, i)=>{
                     return(
-                        <FavoriteComponent key={i} editFavorite={this.editFavorite} deleteFavorite={this.deleteFavorite} location={element.location} id={element.id}/>
+                        <FavoriteComponent className="favorite" key={i} editFavorite={this.editFavorite} deleteFavorite={this.deleteFavorite} location={element.location} id={element.id}/>
                     )
                 })}</div>
             </div>

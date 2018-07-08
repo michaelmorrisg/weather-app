@@ -41,6 +41,10 @@ button {
   border-radius: 10px;
   opacity: .6;
   outline: none;
+  transition: .3s;
+}
+button:hover{
+  opacity: .9;
 }
 h1 {
   font-size: 50px;
@@ -52,7 +56,7 @@ input {
   border-left: none;
   border-right: none;
   background: none;
-  width: 200px;
+  width: 250px;
   height: 45px;
   font-size: 30px;
   outline: none;
@@ -60,7 +64,21 @@ input {
 p {
   font-size: 25px;
 }
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.trashIcon {
+  width: 20px;
+  height: auto;
+}
+.favorite{
+  text-align: left;
+  margin-bottom: 50px;
+}
+.hello {
+  background-color: rgba(255,255,255,.5);
+  width: 60%;
+  margin: 0px auto;
+  border-radius: 10px;
+}
+.title {
+  text-decoration: underline;
+  font-weight: bolder;
 }
