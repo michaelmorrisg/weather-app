@@ -51,7 +51,7 @@ class FavoriteComponent extends Component {
             {/* <p>{this.state.childWeatherConditionResponse}</p>
             <p>{this.state.childWeatherTempResponse}</p> */}
             <button onClick={()=>this.props.deleteFavorite(this.props.id)}><img className="trashIcon"src="https://findicons.com/files/icons/1580/devine_icons_part_2/128/trash_recyclebin_empty_closed.png"/></button>
-            <button onClick={()=>this.toggleEdit()}>Edit</button>
+            <button onClick={()=>this.toggleEdit()}><img className="trashIcon" src="https://image.flaticon.com/icons/svg/61/61456.svg"/></button>
         </div>
         )}else if(this.state.childWeatherConditionResponse !=''){
             return(
