@@ -3,6 +3,7 @@ body {
   background-position: center;
   height: 110vh;
   width: 100%;
+  font-family: 'Chela One', cursive;
 }
 .App {
   text-align: center;
@@ -46,9 +47,11 @@ button {
 button:hover{
   opacity: .9;
 }
+button:active{
+  background-color: rgba(169, 169, 169, 0.295);
+}
 h1 {
   font-size: 50px;
-  font-family: sans-serif;
   color: white;
 }
 input {
@@ -65,7 +68,7 @@ p {
   font-size: 25px;
 }
 .trashIcon {
-  width: 20px;
+  width: 70%;
   height: auto;
 }
 .favorite{
@@ -74,11 +77,15 @@ p {
 }
 .hello {
   background-color: rgba(255,255,255,.5);
-  width: 60%;
+  width: 70%;
   margin: 0px auto;
   border-radius: 10px;
+  margin-bottom: 35px;
 }
 .title {
-  text-decoration: underline;
   font-weight: bolder;
 }
+h2 {
+  font-size: 35px;
+}
+

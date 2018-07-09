@@ -1,3 +1,17 @@
-.favorite {
+/* .favorite {
     background-color: white;
+    height: 10vh;
+} */
+.hello {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 45px;
+    align-content: center;
+}
+.buttons {
+    display: flex;
+    flex-direction: column;
+    width: 5%;
+    height: 90%;
+    justify-content: space-around;
 }

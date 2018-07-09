@@ -8,7 +8,7 @@ const app = express()
 app.use( bodyParser.json())
 app.listen(process.env.SERVER_PORT, ()=>{console.log(`Server listening on port ${process.env.SERVER_PORT}`)})
 
-const favorites = [{location:'Provo, UT',id:100},{location:"Bellingham, WA",id:101}]
+const favorites = [{location:'Provo,UT',id:100},{location:"Bellingham,WA",id:101}]
 var id=0
 
 

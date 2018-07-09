@@ -17,7 +17,7 @@ class Main extends Component {
             favorites: [],
             weatherIcons: [{status:"clear-day", image:"https://cdn4.iconfinder.com/data/icons/daytime-weather/100/day-sunny-512.png"},
         {status: "clear-night", image:"http://icon-park.com/imagefiles/simple_weather_icons_night.png"}, 
-        {status:'partly-cloudy-day', image:"http://rs66.pbsrc.com/albums/h272/weathermanfan/The%20Weather%20Channel%20Icons%202013%20-%20Present/FairDay-MostlySunny_zps8a152e19.png~c200"},
+        {status:'partly-cloudy-day', image:"https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-partly-sunny-512.png"},
         {status:'party-cloudy-night', image:"http://icon-park.com/imagefiles/simple_weather_icons_cloudy_night.png"},
         {status:'cloudy', image:"http://icon-park.com/imagefiles/simple_weather_icons_cloudy.png"},
         {status:'rain', image:"http://icon-park.com/imagefiles/simple_weather_icons_mixed_rain_and_thunderstorms.png"},
